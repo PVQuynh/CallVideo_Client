@@ -46,18 +46,33 @@ function initializePeer(id, usename) {
     }
 
     // Cấu hình các máy chủ STUN và TURN
-    peer = new Peer(id, 
-    {
-        'config': [
-        {'iceServers':
-            { 
-                'url': 'relay1.expressturn.com:3478',
-                'credential': 'zh6GHMeMDQNHLStt',
-                'username': 'efK7QHXRMSZHVGR70O'
+    peer = new Peer(id, {
+        iceServers: [
+            {
+              urls: "stun:stun.relay.metered.ca:80",
+            },
+            {
+              urls: "turn:global.relay.metered.ca:80",
+              username: "2c0409f5b23e0ed330e1e237",
+              credential: "30zIkaVkWht8+yDd",
+            },
+            {
+              urls: "turn:global.relay.metered.ca:80?transport=tcp",
+              username: "2c0409f5b23e0ed330e1e237",
+              credential: "30zIkaVkWht8+yDd",
+            },
+            {
+              urls: "turn:global.relay.metered.ca:443",
+              username: "2c0409f5b23e0ed330e1e237",
+              credential: "30zIkaVkWht8+yDd",
+            },
+            {
+              urls: "turns:global.relay.metered.ca:443?transport=tcp",
+              username: "2c0409f5b23e0ed330e1e237",
+              credential: "30zIkaVkWht8+yDd",
             }
-        } ]
-    });
-
+        ],
+      });
 
     peer.on("open", () => {
         $('#div-dang-ky').hide();
