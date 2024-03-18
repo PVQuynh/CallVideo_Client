@@ -40,37 +40,77 @@ function closeStream(stream) {
 }
 
 // Hàm khởi tạo Peer
-function initializePeer(id, usename) {
+function initializePeer(id) {
     if (peer) {
         peer.destroy();
     }
 
     // Cấu hình các máy chủ STUN và TURN
-    peer = new Peer(id, {
+    // peer = new Peer(id, {
+    //     iceServers: [
+    //         {
+    //           urls: "stun:stun.relay.metered.ca:80",
+    //         },
+    //         {
+    //           urls: "turn:global.relay.metered.ca:80",
+    //           username: "2c0409f5b23e0ed330e1e237",
+    //           credential: "30zIkaVkWht8+yDd",
+    //         },
+    //         {
+    //           urls: "turn:global.relay.metered.ca:80?transport=tcp",
+    //           username: "2c0409f5b23e0ed330e1e237",
+    //           credential: "30zIkaVkWht8+yDd",
+    //         },
+    //         {
+    //           urls: "turn:global.relay.metered.ca:443",
+    //           username: "2c0409f5b23e0ed330e1e237",
+    //           credential: "30zIkaVkWht8+yDd",
+    //         },
+    //         {
+    //           urls: "turns:global.relay.metered.ca:443?transport=tcp",
+    //           username: "2c0409f5b23e0ed330e1e237",
+    //           credential: "30zIkaVkWht8+yDd",
+    //         }
+    //     ],
+    //   });
+
+    var peer = new Peer(id, {
         iceServers: [
+            { urls: 'stun:freeturn.net:5349' }, 
+            { urls: 'turns:freeturn.tel:5349', username: 'free', credential: 'free' },
             {
-              urls: "stun:stun.relay.metered.ca:80",
+                urls: "relay1.expressturn.com:3478",
+                username: "efK7QHXRMSZHVGR70O",
+                credential: "zh6GHMeMDQNHLStt",
             },
             {
-              urls: "turn:global.relay.metered.ca:80",
-              username: "2c0409f5b23e0ed330e1e237",
-              credential: "30zIkaVkWht8+yDd",
+                urls: "stun:stun.relay.metered.ca:80",
+              },
+            {
+              urls: "turn:asia-east.relay.metered.ca:80",
+              username: "fff496ad71b17d3d38ca224e",
+              credential: "NYcdbdYGytIGfL/u",
             },
             {
-              urls: "turn:global.relay.metered.ca:80?transport=tcp",
-              username: "2c0409f5b23e0ed330e1e237",
-              credential: "30zIkaVkWht8+yDd",
+              urls: "turn:asia-east.relay.metered.ca:80?transport=tcp",
+              username: "fff496ad71b17d3d38ca224e",
+              credential: "NYcdbdYGytIGfL/u",
             },
             {
-              urls: "turn:global.relay.metered.ca:443",
-              username: "2c0409f5b23e0ed330e1e237",
-              credential: "30zIkaVkWht8+yDd",
+              urls: "turn:asia-east.relay.metered.ca:443",
+              username: "fff496ad71b17d3d38ca224e",
+              credential: "NYcdbdYGytIGfL/u",
             },
             {
-              urls: "turns:global.relay.metered.ca:443?transport=tcp",
-              username: "2c0409f5b23e0ed330e1e237",
-              credential: "30zIkaVkWht8+yDd",
-            }
+              urls: "turns:asia-east.relay.metered.ca:443?transport=tcp",
+              username: "fff496ad71b17d3d38ca224e",
+              credential: "NYcdbdYGytIGfL/u",
+            },
+            {
+                urls: 'turn:openrelay.metered.ca:80',
+                username: 'openrelayproject',
+                credentials: 'openrelayproject'
+            },
         ],
       });
 
@@ -158,9 +198,8 @@ function initializePeer(id, usename) {
 
 // Sự kiện đăng ký
 $('#btnSignUp').click(() => {
-    const username = $('#txtUserName').val();
     const id = $('#id').val();
-    console.log("id: " + id + ", name: " + username);
+    console.log("id: " + id);
 
-    initializePeer(id, username);
+    initializePeer(id);
 });
