@@ -46,34 +46,6 @@ function initializePeer(id) {
     }
 
     // Cấu hình các máy chủ STUN và TURN
-    // peer = new Peer(id, {
-    //     iceServers: [
-    //         {
-    //           urls: "stun:stun.relay.metered.ca:80",
-    //         },
-    //         {
-    //           urls: "turn:global.relay.metered.ca:80",
-    //           username: "2c0409f5b23e0ed330e1e237",
-    //           credential: "30zIkaVkWht8+yDd",
-    //         },
-    //         {
-    //           urls: "turn:global.relay.metered.ca:80?transport=tcp",
-    //           username: "2c0409f5b23e0ed330e1e237",
-    //           credential: "30zIkaVkWht8+yDd",
-    //         },
-    //         {
-    //           urls: "turn:global.relay.metered.ca:443",
-    //           username: "2c0409f5b23e0ed330e1e237",
-    //           credential: "30zIkaVkWht8+yDd",
-    //         },
-    //         {
-    //           urls: "turns:global.relay.metered.ca:443?transport=tcp",
-    //           username: "2c0409f5b23e0ed330e1e237",
-    //           credential: "30zIkaVkWht8+yDd",
-    //         }
-    //     ],
-    //   });
-
     var peer = new Peer(id, {
         iceServers: [
             { urls: 'stun:freeturn.net:5349' }, 
@@ -129,7 +101,7 @@ function initializePeer(id) {
     // Caller
     $('#btnCall').click(() => {
         const remoteId = $('#remoteId').val();// lấy từ api có email của bạn bè gán id bằng email
-        // ví dụ token có email: quynh5689@gmail.com => id: quynh5689
+        // ví dụ api: /users/{id} để lấy thông tin bạn bè có email: quynh5689@gmail.com => id: quynh5689
         // khi đó quynh123 đã gọi được cho quynh5689
 
         openStream()
